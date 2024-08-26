@@ -8,7 +8,6 @@ public class Quiz : MonoBehaviour
     public static int currentLevel;
 
     [SerializeField] private float _timeLimit;
-    [SerializeField] private int[] correctIndex;
 
     [SerializeField] private TextMeshProUGUI[] _optionTexts;
     [SerializeField] private TextMeshProUGUI _title;
@@ -17,13 +16,13 @@ public class Quiz : MonoBehaviour
     private float _currentTime;
     private bool isStart;
 
-    private QuizSOList _quizListSO;
-    private List<QuizSO> _quizList;
+    public QuizSOList quizSOList;
+    private List<QuizSO> _quizList = new List<QuizSO>();
     private QuizSO _quiz;
 
     private void Awake()
     {
-        foreach (QuizSO quizSO in _quizListSO.list)
+        foreach (QuizSO quizSO in quizSOList.list)
         {
             _quizList.Add(quizSO);
         }
