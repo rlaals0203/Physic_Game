@@ -6,8 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "SO/Quiz")]
 public class QuizSO : ScriptableObject
 {
-    public string[] selection;
-    public string quizDesc;
-    public string answerExplanation;
-    public int correctNumber;
+    public int correctIndex;
+    public string titleText;
+    public string[] optionText;
 }
