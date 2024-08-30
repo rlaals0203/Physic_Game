@@ -58,10 +58,12 @@ public class Quiz : MonoBehaviour
     {
         _quiz = _quizList[currentLevel];
         _player.transform.position = new Vector3(0, 0, 0);
+        _currentTime = 0;
 
         for (int i = 0; i < 4; i++)
         {
             _optionTexts[i].text = _quiz.optionText[i];
+            _quizBackgrounds[i].color = Color.white;
         }
         _title.text = _quiz.titleText;
 

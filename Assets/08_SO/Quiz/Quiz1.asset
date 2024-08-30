@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a18bdc12c3a2c24e805d61645e7f9c3, type: 3}
-  m_Name: QuizList
+  m_Name: Quiz1
   m_EditorClassIdentifier: 
   correctIndex: 3
   titleText: "\uB2E4\uC74C \uC911 p-n \uC811\uD569 \uB2E4\uC774\uC624\uB4DC\uC758
