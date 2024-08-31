@@ -4,11 +4,14 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class Quiz : MonoBehaviour
 {
-    public static int currentLevel;
-    public static int score;
+    public int currentLevel;
+    public int score;
+
+    public UnityEvent<bool> OnComplete;
 
     [SerializeField] private float _timeLimit;
 
@@ -20,19 +23,18 @@ public class Quiz : MonoBehaviour
     [SerializeField] private Player _player;
 
     public bool isStart;
-    public QuizSOList quizSOList;
+    public bool isComplete;
 
     private float _currentTime;
 
-    private List<QuizSO> _quizList = new List<QuizSO>();
+    public QuizSOList quizSOList;
+    public List<QuizSO> _quizList = new List<QuizSO>();
     private QuizSO _quiz;
 
     private void Awake()
     {
         foreach (QuizSO quizSO in quizSOList.list)
-        {
             _quizList.Add(quizSO);
-        }
 
         Restart();
     }
@@ -58,6 +60,8 @@ public class Quiz : MonoBehaviour
 
     private void InitializeQuiz()
     {
+        if (isComplete) return;
+
         _quiz = _quizList[currentLevel];
         _player.transform.position = new Vector3(0, 0, 0);
         _currentTime = 0;
@@ -65,7 +69,7 @@ public class Quiz : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             _optionTexts[i].text = _quiz.optionText[i];
-            _quizSprite[i].color = Color.white;
+            _quizSprite[i].DOColor(Color.white, 0.5f);
         }
         _title.text = _quiz.titleText;
         isStart = true;
@@ -77,8 +81,8 @@ public class Quiz : MonoBehaviour
         {
             score++;
             _scoreText.text = $"Á¡¼ö : {score}";
-        }
-
+        } 
+        
         for (int i = 0; i < 4; i++)
         {
             if (i + 1 != _quiz.correctIndex)
@@ -92,7 +96,7 @@ public class Quiz : MonoBehaviour
 
     private void TimerCheck()
     {
-        if (_currentTime > _timeLimit)
+        if (_currentTime >= _timeLimit)
         {
             isStart = false;
             _currentTime = 0;
@@ -102,10 +106,27 @@ public class Quiz : MonoBehaviour
         }
     }
 
+    private void Complete()
+    {
+        _title.transform.parent.gameObject.SetActive(false);
+        _quizSprite[0].transform.parent.gameObject.SetActive(false);
+
+        if (score >= _quizList.Count - 2)
+            OnComplete?.Invoke(true);
+        else
+            OnComplete?.Invoke(false);
+
+        isComplete = true;
+    }
+
     private IEnumerator IntervalQuiz()
     {
         yield return new WaitForSeconds(5f);
         currentLevel++;
+
+        if (currentLevel >= _quizList.Count - 1)
+            Complete();
+
         InitializeQuiz();
     }
 }

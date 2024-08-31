@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: QuizList
   m_EditorClassIdentifier: 
   list:
+  - {fileID: 11400000, guid: fbbf09a214d45044d8575659e45697fd, type: 2}
   - {fileID: 11400000, guid: 47d7ace51b10a614fb656a8cc9c5eaca, type: 2}
   - {fileID: 11400000, guid: 0133fc33328bf2e40a2cd260bb5815cf, type: 2}
+  - {fileID: 11400000, guid: 503390cb6da85564483fdec3f5be6ba0, type: 2}
+  - {fileID: 11400000, guid: 9cb45d9023d215d4489ef1617700b9eb, type: 2}
+  - {fileID: 11400000, guid: eacd32b481442f64e821532240a8f5f0, type: 2}
+  - {fileID: 11400000, guid: e2d51037865950a4bb554200db1e719f, type: 2}
+  - {fileID: 11400000, guid: d91d3aaec0848934b9855f9b7e3b36d7, type: 2}
+  - {fileID: 11400000, guid: b0757062cfc1d39478a4eec92fbebafc, type: 2}

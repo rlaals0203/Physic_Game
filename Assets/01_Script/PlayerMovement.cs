@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,12 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         GetInput();
-        RigidCompo.velocity = new Vector2(x, y) * moveSpeed;
+        RigidCompo.velocity = new Vector2(x, y).normalized * moveSpeed;
     }
 
     public void Dash()
     {
-        Vector2 dashDir = new Vector2(x, y);
+        Vector2 dashDir = new Vector2(x, y).normalized;
         RigidCompo.AddForce(dashDir * dashPower, ForceMode2D.Impulse);
     }
 
